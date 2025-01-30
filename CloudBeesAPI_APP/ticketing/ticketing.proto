@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package ticket;
+option go_package = "ticketing/;ticket";
+service TicketService {
+    rpc PurchaseTicket(PurchaseRequest) returns (TicketReceipt);
+    rpc GetReceipt(GetReceiptRequest) returns (TicketReceipt);
+    rpc GetUsersInSection(GetUsersInSectionRequest) returns (UsersInSectionResponse);
+    rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse);
+    rpc ModifyUserSeat(ModifyUserSeatRequest) returns (TicketReceipt);
+}
+
+message PurchaseRequest {
+    string first_name = 1;
+    string last_name = 2;
+    string email = 3;
+    string section = 4;
+}
+
+message GetReceiptRequest {
+    string email = 1;
+}
+
+message GetUsersInSectionRequest {
+    string section = 1;
+}
+
+message RemoveUserRequest {
+    string email = 1; 
+}
+
+message RemoveUserResponse {
+    bool success = 1;             
+    string message = 2;           
+}
+
+message ModifyUserSeatRequest {
+    string email = 1;
+    string new_section = 2;
+}
+
+message TicketReceipt {
+    string from = 1;
+    string to = 2;
+    string user = 3;
+    float price_paid = 4;
+    string section = 5;
+}
+
+message UsersInSectionResponse {
+    repeated string users = 1;
+}
+
+message Empty {}

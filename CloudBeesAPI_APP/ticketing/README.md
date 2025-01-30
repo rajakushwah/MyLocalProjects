@@ -1,0 +1,1 @@
+The User Service is a gRPC-based API that manages user-related operations, including modifying user seat assignments and removing users. This service is designed to be efficient and easy to integrate with other systems.
